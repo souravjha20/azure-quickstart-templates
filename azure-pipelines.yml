@@ -20,7 +20,7 @@ steps:
     azureResourceManagerConnection: 'demo-sc'
     subscriptionId: 'dfc72f62-287d-45f7-bdfc-291b6151b06a'
     action: 'Create Or Update Resource Group'
-    resourceGroupName: 'ARMPipelinesLAMP-rg'
+    resourceGroupName: 'test-rg'
     location: 'West US'
     templateLocation: 'Linked artifact'
     csmFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.json'
