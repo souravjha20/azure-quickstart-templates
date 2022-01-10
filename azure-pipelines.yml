@@ -11,6 +11,9 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: 'quickstarts/microsoft.web/webapp-linux-managed-mysql/'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
@@ -18,22 +21,6 @@ steps:
     subscriptionId: 'dfc72f62-287d-45f7-bdfc-291b6151b06a'
     action: 'Create Or Update Resource Group'
     resourceGroupName: 'ARMPipelinesLAMP-rg'
-    location: 'West US'
-    templateLocation: 'Linked artifact'
-    csmFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.json'
-    csmParametersFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.parameters.json'
-    overrideParameters: '-siteName $(siteName) -administratorLogin $(adminUser) -administratorLoginPassword $(ARM_PASS)'
-    deploymentMode: 'Incremental'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-- task: AzureResourceManagerTemplateDeployment@3
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'demo-sc'
-    subscriptionId: 'dfc72f62-287d-45f7-bdfc-291b6151b06a'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'test-rg'
     location: 'West US'
     templateLocation: 'Linked artifact'
     csmFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.json'
